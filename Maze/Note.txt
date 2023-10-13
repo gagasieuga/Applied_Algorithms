@@ -1,0 +1,3 @@
+Lỗi sau nhiều lần submit là do index hàng cột chưa thống nhất ở 2 function Solve và Input
+Đoạn input lấy index hàng và cột từ 1 trở đi thì đoạn solve cũng phải xét khi vx < 1 và vy < 1 là dừng rồi
+chứ không phải vx < 0 và vy < 0
