@@ -7,12 +7,6 @@ int M[30][MAXN];
 int m, n;
 
 void precompute() {
-    //initialize precompute data
-    for (int j = 0; (1 << j) <= n; j++){
-        for(int i = 0; i < n; i++){
-            M[j][i] =-1;
-        }
-    }
     //initialize array data
     for(int i = 0; i < n; i++){
         M[0][i] = arr[i];
@@ -28,11 +22,14 @@ void precompute() {
 }
 
 int rmq(int i, int j){
-    int l = log2(j - i + 1); //VD từ i -> j có 9 phần tử thì log2(9) sẽ ra 3
-    return min(M[l][i], M[l][j - (1 << l) + 1]);
+    int k = log2(j - i + 1); //VD từ i -> j có 9 phần tử thì log2(9) sẽ ra 3
+    return min(M[k][i], M[k][j - (1 << k) + 1]);
 }
 
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int sum = 0;
     int startIndex, endIndex;
     cin >> n;
@@ -45,14 +42,12 @@ int main(){
     for (int i = 0; i < m; i++){
         cout << "Nhap cap phan tu thu " << i+1 << endl;
         cin >> startIndex >> endIndex;
-        if (startIndex > endIndex){
-            cout << "Khong hop le" << endl;
-            return 0;
-        } else if (startIndex < 0 || endIndex > n - 1)
-        {
+
+        if (startIndex > endIndex || startIndex < 0 || endIndex >= n){
             cout << "Khong hop le" << endl;
             return 0;
         } 
+        
         sum += rmq(startIndex, endIndex);
         cout << sum << endl;
     }
