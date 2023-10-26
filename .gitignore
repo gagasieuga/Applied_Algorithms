@@ -1,2 +1,5 @@
 .vscode/
 visualMaze.py
+
+output/
+dayconmax.cpp
